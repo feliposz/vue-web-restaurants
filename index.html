@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Guia de restaurantes</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div id="app">
+        <restaurant-nav></restaurant-nav>
+        <restaurant-card></restaurant-card>
+        <restaurant-menu></restaurant-menu>
+    </div>
+
+    <template id="restaurant-nav">
+        <header>
+            <nav class="navbar navbar-expand-md navbar-light bg-light">
+                <span class="navbar-brand mb-0 h1">Guia de restaurantes</span>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    Restaurantes
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+                                    <a class="dropdown-item" v-for="restaurant in restaurants" v-on:click="select(restaurant.id)" v-text="restaurant.name"></a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    </template>
+
+    <template id="restaurant-card">
+        <div v-if="restaurant" class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light restaurant-display"
+            v-bind:style="'background-image: url(\'' + restaurant.image + '\')'">
+            <div class="col-md-5 p-lg-5 mx-auto my-5">
+                <h1 class="display-4 font-weight-normal">{{ restaurant.name }}</h1>
+                <p class="lead font-weight-normal">{{ restaurant.address }}</p>
+            </div>
+            <div class="product-device shadow-sm d-none d-md-block"></div>
+            <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+        </div>
+    </template>
+
+    <template id="restaurant-menu">
+        <div class="row">
+            <div v-for="item in menu" class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <div class="thumbnail">
+                    <img class="img-thumbnail" v-if="item.image" :src="item.image" :alt="item.name">
+                    <img class="img-thumbnail" v-else="item.image" src="https://via.placeholder.com/200" alt="Sem foto">
+
+                    <br> {{ item.name }}
+                    <br> {{ item.group }}
+                    <br>
+                    <strong>{{ item.price | currency }}</strong>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
