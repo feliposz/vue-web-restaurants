@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Guia de restaurantes</title>
+    <title>Restaurant's guide</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
@@ -24,7 +24,7 @@
     <template id="restaurant-nav">
         <header>
             <nav class="navbar navbar-expand-md navbar-light bg-light">
-                <span class="navbar-brand mb-0 h1">Guia de restaurantes</span>
+                <span class="navbar-brand mb-0 h1">Restaurant's guide</span>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +37,7 @@
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false">
-                                    Restaurantes
+                                    Restaurants
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu">
                                     <a class="dropdown-item" v-for="restaurant in restaurants" v-on:click="select(restaurant.id)" v-text="restaurant.name"></a>
@@ -63,11 +63,11 @@
     </template>
 
     <template id="restaurant-menu">
-        <div class="row">
-            <div v-for="item in menu" class="col-lg-3 col-md-4 col-xs-6 thumb">
+        <div class="container-fluid row">
+            <div v-for="item in menu" class="col-xl-2 col-lg-3 col-md-4 col-sm-6 thumb">
                 <div class="thumbnail">
                     <img class="img-thumbnail" v-if="item.image" :src="item.image" :alt="item.name">
-                    <img class="img-thumbnail" v-else="item.image" src="https://via.placeholder.com/200" alt="Sem foto">
+                    <img class="img-thumbnail" v-else="item.image" src="https://via.placeholder.com/200" alt="No photo">
 
                     <br> {{ item.name }}
                     <br> {{ item.group }}

@@ -1,3 +1,8 @@
+body {
+    background-color: #eee;
+    text-align: center;
+}
+
 .restaurant-display {
     height: 100%; 
     background-position: center;
@@ -8,5 +13,7 @@
 }
 
 .img-thumbnail {
-    max-height: 200px;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
 }

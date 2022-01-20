@@ -1,3 +1,5 @@
+const serverUrl = 'https://my-json-server.typicode.com/feliposz/vue-web-restaurants'
+
 Vue.component('restaurant-nav', {
     template: '#restaurant-nav',
     data: function () {
@@ -7,7 +9,7 @@ Vue.component('restaurant-nav', {
     },
     mounted: function () {
         var vm = this;
-        axios.get('https://challange.goomer.com.br/restaurants').then(function (res) {
+        axios.get(serverUrl + '/restaurants').then(function (res) {
             vm.restaurants = res.data;
         });
     },
@@ -23,8 +25,8 @@ Vue.component('restaurant-card', {
     data: function () {
         return {
             restaurant: {
-                name: 'Bem-vindo ao guia de restaurantes',
-                address: 'Por favor, selecione um restaurante na lista acima.',
+                name: "Welcome to the Restaurant's guide",
+                address: 'Please, select a restaurant from the list above.',
                 image: 'https://cdn.pixabay.com/photo/2017/06/06/22/46/mediterranean-cuisine-2378758_960_720.jpg',
             },
         };
@@ -32,7 +34,7 @@ Vue.component('restaurant-card', {
     mounted: function () {
         var vm = this;
         this.$eventHub.$on('selected', function (id) {
-            axios.get('https://challange.goomer.com.br/restaurants/' + id).then(function (res) {
+            axios.get(serverUrl + '/restaurants/' + id).then(function (res) {
                 vm.restaurant = res.data;
             });
         });
@@ -49,7 +51,7 @@ Vue.component('restaurant-menu', {
     mounted: function () {
         var vm = this;
         this.$eventHub.$on('selected', function (id) {
-            axios.get('https://challange.goomer.com.br/restaurants/' + id + '/menu').then(function (res) {
+            axios.get(serverUrl + '/restaurants/' + id + '/menu').then(function (res) {
                 vm.menu = res.data;
             });
         });
